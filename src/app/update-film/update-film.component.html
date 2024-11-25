@@ -1,0 +1,52 @@
+<div class="container">
+    <div>
+      <h2>Modifier un Film :</h2>
+    </div>
+    <form (ngSubmit)="updateFilm()">
+      <!-- ID du film (caché) -->
+      <div *ngIf="false" class="col-sm-2 col-md-2 col-lg-2">
+        <label>ID Film</label>
+        <input type="text" [(ngModel)]="currentFilm.idFilm" name="idFilm" class="form-control" />
+      </div>
+  
+      <!-- Nom du film -->
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Nom Film</label>
+        <input type="text" [(ngModel)]="currentFilm.nomFilm" name="nomFilm" class="form-control" />
+      </div>
+  
+      <!-- Genre du film -->
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label>Genre Film</label>
+        <input type="text" [(ngModel)]="currentFilm.genreFil" name="genreFil" class="form-control" />
+      </div>
+  
+      <!-- Date de sortie -->
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Date de Sortie</label>
+        <input
+          type="date"
+          [ngModel]="currentFilm.dateSortie | date: 'yyyy-MM-dd'"
+          (ngModelChange)="currentFilm.dateSortie = $event"
+          name="dateSortie"
+          class="form-control"
+        />
+      </div>
+  
+      <!-- Sélection du producteur -->
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Producteur</label>
+        <select [(ngModel)]="updatedProducId" name="producteur" class="form-control">
+          <option *ngFor="let prod of producteurs" [value]="prod.idProduc">
+            {{ prod.nomProduc }}
+          </option>
+        </select>
+      </div>
+  
+      <!-- Bouton de soumission -->
+      <div class="mt-2">
+        <button type="submit" class="btn btn-success">Modifier</button>
+      </div>
+    </form>
+  </div>
+  

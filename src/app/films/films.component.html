@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="card shadow mb-4">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom Film</th>
+                    <th>Genre</th>
+                    <th>Date de Sortie</th>
+                    <th>Producteur</th>
+                    <th *ngIf="authService.isAdmin()">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let film of films">
+                    <td>{{film.idFilm}}</td>
+                    <td>{{film.nomFilm}}</td>
+                    <td>{{film.genreFil}}</td>
+                    <td>{{film.dateSortie | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ film.producteur ? film.producteur.nomProduc : 'No producer' }}</td>
+                    <td><a  *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerFilm(film)">Supprimer</a></td>
+                    <td><a *ngIf="authService.isAdmin()"class="btn btn-success" [routerLink]="['/updateFilm',film.idFilm]">Modifier</a></td>
+                </tr>
+        </tbody>
+        
+    </table>
+</div>

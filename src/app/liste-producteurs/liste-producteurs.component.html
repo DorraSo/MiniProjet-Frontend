@@ -1,0 +1,32 @@
+<div class="container">
+
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4" *ngIf="authService.isAdmin()">
+        <app-update-producteur 
+         [producteur]="updatedProd"
+         [ajout]="ajout"
+         (producteurUpdated)= "producteurUpdated($event)">
+        </app-update-producteur>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom Producteur</th>
+                        <th>Date de Naissance</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let prod of producteurs">
+                    <tr>
+                        <td>{{prod.idProduc}}</td>
+                        <td>{{prod.nomProduc}}</td>
+                        <td>{{prod.dateNaissance}}</td>
+                        <td><a *ngIf="authService.isAdmin()" class="btn btn-success" (click)="updateProd(prod)">Editer</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    
